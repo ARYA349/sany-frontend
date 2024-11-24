@@ -76,7 +76,7 @@ const App = () => {
     className="mx-2 px-4 py-2 bg-green-800 text-white rounded"
     data-aos="fade-left"
   >
-    Sebelumnya
+    ←
     </button>
     <span className="mx-2 py-2">{currentPage} / {totalPages}</span>
     <button
@@ -97,7 +97,7 @@ const App = () => {
     className="mx-2 px-4 py-2 bg-green-800 text-white rounded"
     data-aos="fade-right"
     >
-    Lanjut
+    →
     </button>
 
     </div>

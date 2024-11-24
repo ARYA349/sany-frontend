@@ -48,7 +48,7 @@ const AboutSection = () => {
   };
 
   return (
-    <section id="tentangkami" className="relative bg-gray-100">
+    <section id="tentangkami" className="relative bg-white">
     <div className="container mx-auto flex flex-col lg:flex-row md:gap-8 items-center justify-between px-4 py-20 mb-10">
     {/* Left Image Content */}
     <div className="lg:w-1/2 mb-8 lg:mb-0" data-aos="fade-right">

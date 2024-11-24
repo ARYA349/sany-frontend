@@ -36,7 +36,7 @@ const ProductCard = ({ product }) => {
       alt={product.name}
       />
       {/* Overlay */}
-      <div className="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center text-white text-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+      <div className="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center text-center text-white text-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300">
       Klik untuk detail produk
       </div>
       </>
