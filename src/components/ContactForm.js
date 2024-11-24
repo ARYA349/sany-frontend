@@ -14,7 +14,7 @@ const ContactForm = () => {
     setIsSubmitting(true);
 
     try {
-      const response = await axios.post('http://localhost:1337/api/feedbacks', {
+      const response = await axios.post('https://smiling-strength-5b60708ab1.strapiapp.com/api/feedbacks', {
         data: {
           name,
           email,

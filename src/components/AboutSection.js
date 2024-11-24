@@ -10,7 +10,7 @@ const AboutSection = () => {
   useEffect(() => {
     const fetchAboutData = async () => {
       try {
-        const response = await axios.get('http://localhost:1337/api/about?populate=*');
+        const response = await axios.get('https://smiling-strength-5b60708ab1.strapiapp.com/api/about?populate=*');
         console.log('About Data Response:', response.data);
         if (response.data.data) {
           setAboutData(response.data.data);
@@ -39,7 +39,7 @@ const AboutSection = () => {
     return <div>Loading About Section...</div>;
   }
 
-  const baseUrl = 'http://localhost:1337';
+  const baseUrl = 'https://smiling-strength-5b60708ab1.strapiapp.com';
   const imageUrl = aboutData.image && aboutData.image.length > 0 ? `${baseUrl}${aboutData.image[0].url}` : '';
 
   const toggleDescription = () => {

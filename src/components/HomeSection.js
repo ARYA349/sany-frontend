@@ -9,7 +9,7 @@ const HomeSection = () => {
   useEffect(() => {
     const fetchHomeData = async () => {
       try {
-        const response = await axios.get("http://localhost:1337/api/homes?populate=*");
+        const response = await axios.get("https://smiling-strength-5b60708ab1.strapiapp.com/api/homes?populate=*");
         const data = response.data.data;
         setHomeData(data);
       } catch (error) {
@@ -39,7 +39,7 @@ const HomeSection = () => {
     return <div>Loading...</div>;
   }
 
-  const baseUrl = "http://localhost:1337";
+  const baseUrl = "https://smiling-strength-5b60708ab1.strapiapp.com";
   const home = homeData[0];
   const descriptionElements = home.description.map((desc, index) => {
     if (desc.type === "heading") {

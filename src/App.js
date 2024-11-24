@@ -25,7 +25,7 @@ const App = () => {
   useEffect(() => {
     const fetchProducts = async () => {
       try {
-        const response = await axios.get('http://localhost:1337/api/products?populate=*');
+        const response = await axios.get('https://smiling-strength-5b60708ab1.strapiapp.com/api/products?populate=*');
         setProducts(response.data.data);
       } catch (error) {
         console.error('Error fetching products:', error);
@@ -34,7 +34,7 @@ const App = () => {
 
     const fetchHomes = async () => {
       try {
-        const response = await axios.get('http://localhost:1337/api/homes?populate=*');
+        const response = await axios.get('https://smiling-strength-5b60708ab1.strapiapp.com/api/homes?populate=*');
         setHomes(response.data.data);
       } catch (error) {
         console.error('Error fetching homes:', error);

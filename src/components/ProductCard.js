@@ -12,7 +12,7 @@ const ProductCard = ({ product }) => {
     `Halo, saya tertarik dengan produk ${product.name} (ID: ${product.id}) dengan harga Rp ${product.price}`
   )}`;
 
-  const baseUrl = "http://localhost:1337";
+  const baseUrl = "https://smiling-strength-5b60708ab1.strapiapp.com";
   const imageUrl = product.image?.url ? `${baseUrl}${product.image.url}` : null;
 
   return (
