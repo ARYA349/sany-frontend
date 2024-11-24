@@ -1,19 +1,20 @@
-import React, { useState } from "react";
-import AOS from 'aos'; // Pastikan Anda mengimpor AOS
+import React, { useState, useEffect } from "react";
+import AOS from "aos"; // Pastikan AOS diinisialisasi
 
 const ProductCard = ({ product }) => {
   const [showModal, setShowModal] = useState(false);
-
-  if (!product) {
-    return <div>Loading...</div>;
-  }
 
   const whatsappLink = `https://wa.me/6289524396489?text=${encodeURIComponent(
     `Halo, saya tertarik dengan produk ${product.name} (ID: ${product.id}) dengan harga Rp ${product.price}`
   )}`;
 
-  const baseUrl = "https://smiling-strength-5b60708ab1.strapiapp.com";
-  const imageUrl = product.image?.url ? `${baseUrl}${product.image.url}` : null;
+  const imageUrl = product.image?.url
+  ? product.image.url
+  : product.image?.formats?.medium?.url ||
+  product.image?.formats?.small?.url ||
+  product.image?.formats?.thumbnail?.url ||
+  null;
+
 
   return (
     <div className="flex justify-center items-center bg-gray-100">
@@ -50,7 +51,10 @@ const ProductCard = ({ product }) => {
     {product.name}
     </div>
     <p id="Harga" className="text-sm font-medium text-center mt-2">
-    Rp {new Intl.NumberFormat('id-ID', { style: 'decimal' }).format(product.price)}
+    Rp{" "}
+    {new Intl.NumberFormat("id-ID", { style: "decimal" }).format(
+      product.price
+    )}
     </p>
     </div>
     </div>
@@ -58,15 +62,14 @@ const ProductCard = ({ product }) => {
     {/* Tombol WhatsApp */}
     <div className="p-4 text-center">
     <a href={whatsappLink} target="_blank" rel="noopener noreferrer">
-    <button className="bg-white text-green-800 border-green-600 border-2 text-xs py-1 px-2
-    rounded-md hover:bg-green-800 hover:text-white hover:border-white transition
-    lg:rounded-xl lg:py-3 lg:px-4 lg:text-[15px]">
+    <button className="bg-white text-green-800 border-green-600 border-2 text-xs py-1 px-2 rounded-md hover:bg-green-800 hover:text-white hover:border-white transition lg:rounded-xl lg:py-3 lg:px-4 lg:text-[15px]">
     Pesan Sekarang
     </button>
     </a>
     </div>
     </div>
 
+    {/* Modal Detail Produk */}
     {showModal && (
       <div className="fixed inset-0 bg-gray-900 bg-opacity-50 flex items-center justify-center z-50">
       <div
@@ -83,12 +86,20 @@ const ProductCard = ({ product }) => {
       <div className="flex flex-col lg:flex-row gap-4">
       {/* Gambar Produk */}
       <div className="flex-1">
-      {imageUrl && (
+      {imageUrl ? (
         <img
         className="w-full h-full object-cover object-top rounded-md"
         src={imageUrl}
         alt={product.name}
+        onError={(e) => {
+          e.target.src =
+          "https://via.placeholder.com/750x1000.png?text=Gambar+Tidak+Tersedia";
+        }}
         />
+      ) : (
+        <div className="w-full h-full bg-gray-400 flex items-center justify-center">
+        Gambar Tidak Tersedia
+        </div>
       )}
       </div>
       {/* Detail Produk */}
@@ -98,7 +109,9 @@ const ProductCard = ({ product }) => {
       <div className="text-gray-800 mb-4">
       <p>
       <span className="font-bold">Harga:</span> Rp{" "}
-      {new Intl.NumberFormat("id-ID", { style: "decimal" }).format(product.price)}
+      {new Intl.NumberFormat("id-ID", { style: "decimal" }).format(
+        product.price
+      )}
       </p>
       <p>
       <span className="font-bold">Ukuran:</span>{" "}
@@ -116,13 +129,8 @@ const ProductCard = ({ product }) => {
       </div>
       {/* Tombol WhatsApp */}
       <div className="mt-4 text-center">
-      <a
-      href={whatsappLink}
-      target="_blank"
-      rel="noopener noreferrer"
-      >
-      <button className="bg-white w-full text-green-800 border-green-600 border-2 py-2 px-4
-      rounded-xl hover:bg-green-800 hover:text-white hover:border-white transition">
+      <a href={whatsappLink} target="_blank" rel="noopener noreferrer">
+      <button className="bg-white w-full text-green-800 border-green-600 border-2 py-2 px-4 rounded-xl hover:bg-green-800 hover:text-white hover:border-white transition">
       Pesan Sekarang
       </button>
       </a>
@@ -132,9 +140,10 @@ const ProductCard = ({ product }) => {
       </div>
       </div>
     )}
-
     </div>
   );
 };
+
+
 
 export default ProductCard;

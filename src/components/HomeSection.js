@@ -9,7 +9,10 @@ const HomeSection = () => {
   useEffect(() => {
     const fetchHomeData = async () => {
       try {
-        const response = await axios.get("https://smiling-strength-5b60708ab1.strapiapp.com/api/homes?populate=*");
+        const response = await axios.get("https://smiling-strength-5b60708ab1.strapiapp.com/api/homes?populate=*", {
+          withCredentials: true
+        });
+
         const data = response.data.data;
         setHomeData(data);
       } catch (error) {
@@ -39,7 +42,6 @@ const HomeSection = () => {
     return <div>Loading...</div>;
   }
 
-  const baseUrl = "https://smiling-strength-5b60708ab1.strapiapp.com";
   const home = homeData[0];
   const descriptionElements = home.description.map((desc, index) => {
     if (desc.type === "heading") {
@@ -66,7 +68,7 @@ const HomeSection = () => {
     }
     if (desc.type === "paragraph") {
       return (
-        <p key={index} id="paragraph" className="text-green-900 text-lg mb-[2px] pb-2 hidden lg:block">
+        <p key={index} className="text-green-900 text-lg mb-[2px] pb-2 hidden lg:block">
         {desc.children[0].text}
         </p>
       );
@@ -75,7 +77,7 @@ const HomeSection = () => {
   });
 
   const images = home.image;
-  const imageUrl = images && images.length > 0 ? `${baseUrl}${images[currentImageIndex].url}` : null;
+  const imageUrl = images && images.length > 0 ? images[currentImageIndex].url : null;
 
   return (
     <section id="beranda" className="relative bg-white pt-10">
@@ -95,7 +97,7 @@ const HomeSection = () => {
       <img
       src={imageUrl}
       alt={images[currentImageIndex].alternativeText || "Fashion"}
-      className={`w-[260px] lg:w-[340px] h-auto rounded-tl-[70px] rounded-br-[70px] lg:rounded-tl-[100px] lg:rounded-br-[100px] rounded-tr-md rounded-bl-md mx-auto mb-6 lg:mb-0 lg:ml-[160px] shadow-[0_8px_25px_rgba(0,0,0,0.6)] object-contain transition-opacity duration-500 ${fadeClass}`}
+      className={`w-[280px] h-[380px] lg:w-[340px] lg:h-[480px]  rounded-tl-[70px] rounded-br-[70px] lg:rounded-tl-[100px] lg:rounded-br-[100px] rounded-tr-md rounded-bl-md mx-auto mb-6 lg:mb-0 lg:ml-[160px] shadow-[0_8px_25px_rgba(0,0,0,0.6)] object-cover transition-opacity duration-500 ${fadeClass}`}
       />
       </div>
     ) : (
