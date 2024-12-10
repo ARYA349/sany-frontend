@@ -9,7 +9,7 @@ const HomeSection = () => {
   useEffect(() => {
     const fetchHomeData = async () => {
       try {
-        const response = await axios.get("https://smiling-strength-5b60708ab1.strapiapp.com/api/homes?populate=*", {
+        const response = await axios.get("https://powerful-cheese-e932f2aacf.strapiapp.com/api/homes?populate=*", {
           withCredentials: true
         });
 

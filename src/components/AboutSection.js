@@ -10,7 +10,7 @@ const AboutSection = () => {
   useEffect(() => {
     const fetchAboutData = async () => {
       try {
-        const response = await axios.get('https://smiling-strength-5b60708ab1.strapiapp.com/api/about?populate=*');
+        const response = await axios.get('https://powerful-cheese-e932f2aacf.strapiapp.com/api/about?populate=*');
         console.log('About Data Response:', response.data);
         if (response.data.data) {
           setAboutData(response.data.data);
